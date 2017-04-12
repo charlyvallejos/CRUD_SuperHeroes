@@ -25,6 +25,10 @@
             
             return printf($respuesta);
         }
+        else if ($transaccion == 'baja')
+        {
+            
+        }
                             
     }
     

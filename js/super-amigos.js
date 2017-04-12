@@ -6,6 +6,7 @@ var STATUS_OK = 200;
 var btnInsertar = document.querySelector("#insertar"),
     precarga = document.querySelector("#precarga"),
     respuesta = document.querySelector("#respuesta"),
+    btnEliminar = document.querySelectorAll(".eliminar"),
     ajax = null;
     
 //Funciones  
@@ -33,6 +34,7 @@ function datosRecibidos()
                 document.querySelector('#alta-heroe').addEventListener('submit', insertarHeroe);
             if(ajax.responseText.indexOf('data-recargar') > -1)
                 setTimeout(window.location.reload(),5000);
+            
         }
         else
         {
@@ -57,16 +59,18 @@ function insertarHeroe(evento)
     
     var nombre = new Array(),
         valor = new Array(),
-        datos = "";
+        datos = "";        
 
-    for($i=1; $i <= evento.target.length; $i++)
+    for(var i = 1; i < evento.target.length; i++)
     {
         nombre[i] = evento.target[i].name;
         valor[i] = evento.target[i].value;
         
         datos += nombre[i] + '=' + valor[i] + '&'; 
+        
     }
     
+    //console.log(datos);
     ejecutarAJAX(datos);    
 }
 
@@ -80,9 +84,29 @@ function altaHeroe(evento)
     //alert("alta usuario");
 }
 
+function eliminarHeroe(evento)
+{
+    evento.preventDefault();
+    
+    var idHeroe = evento.target.dataset.id;
+    var eliminar = confirm('Esta seguro que desea eliminar el SuperHéroe con el id:' + idHeroe);
+    
+    if(eliminar)
+    {
+        var datos = "idHeroe="+ idHeroe +"&transaccion=baja";
+        ejecutarAJAX(datos);
+    }
+            
+}
+
 function alCargarDocumento()
 {
     btnInsertar.addEventListener("click", altaHeroe);
+    
+    for(var i = 0; i < btnEliminar.length; i++)
+    {
+        btnEliminar[i].addEventListener("click", eliminarHeroe);
+    }
 }
 window.addEventListener("load",alCargarDocumento);    
 

@@ -22,10 +22,14 @@ img{
     width: 80%;
 }
 
-.error{
+.error, .exito{
     background: red;
     color: white;
     padding: 1em;
+}
+
+.exito{
+    background: green;
 }
 
 .formulario, .tabla p{
