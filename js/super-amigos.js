@@ -33,7 +33,7 @@ function datosRecibidos()
             if(ajax.responseText.indexOf('data-insertar') > -1)
                 document.querySelector('#alta-heroe').addEventListener('submit', insertarHeroe);
             if(ajax.responseText.indexOf('data-recargar') > -1)
-                setTimeout(window.location.reload(),5000);
+                setTimeout(window.location.reload(),50000);
             
         }
         else
@@ -69,7 +69,7 @@ function insertarHeroe(evento)
         datos += nombre[i] + '=' + valor[i] + '&'; 
         
     }
-    
+    //alert('prueba');
     //console.log(datos);
     ejecutarAJAX(datos);    
 }

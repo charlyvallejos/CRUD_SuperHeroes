@@ -22,7 +22,7 @@
             {
                 $respuesta = "<div class='error'>Error al insertar el Superhéroe: <b>".$_POST['txt_nombre']."</b></div>";
             }
-            
+            //alert($resultado);
             return printf($respuesta);
         }
         else if ($transaccion == 'baja')
