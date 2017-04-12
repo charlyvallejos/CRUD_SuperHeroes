@@ -27,7 +27,23 @@
         }
         else if ($transaccion == 'baja')
         {
+            $controladorSA = new controladorSA();
+            $resultado = $controladorSA->eliminar($_POST['idHeroe']);
             
+            if($resultado)
+            {
+                $respuesta = "<div class='exito' data-recargar>Se eliminó con éxito el Superhéroe Id: <b>".$_POST['idHeroe']."</b></div>";
+            }
+            else
+            {
+                $respuesta = "<div class='error'>Error al eliminar el Superhéroe Id: <b>".$_POST['idHeroe']."</b></div>";
+            }
+            
+            return printf($respuesta);
+        }
+        else if($transaccion == 'editar')
+        {
+            editarHeroe($_POST['idHeroe']);
         }
                             
     }

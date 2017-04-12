@@ -46,6 +46,18 @@
                 return false;
         }
         
+        public function eliminar(){
+            $sql = "DELETE FROM Heroes WHERE id_heroe = $this->id_heroe";
+            if($this->conn->query($sql))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
     }
 
 ?>

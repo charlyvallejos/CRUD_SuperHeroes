@@ -7,6 +7,7 @@ var btnInsertar = document.querySelector("#insertar"),
     precarga = document.querySelector("#precarga"),
     respuesta = document.querySelector("#respuesta"),
     btnEliminar = document.querySelectorAll(".eliminar"),
+    btnEditar = document.querySelectorAll(".editar"),
     ajax = null;
     
 //Funciones  
@@ -33,7 +34,7 @@ function datosRecibidos()
             if(ajax.responseText.indexOf('data-insertar') > -1)
                 document.querySelector('#alta-heroe').addEventListener('submit', insertarHeroe);
             if(ajax.responseText.indexOf('data-recargar') > -1)
-                setTimeout(window.location.reload(),50000);
+                setTimeout(window.location.reload(),7000);
             
         }
         else
@@ -99,6 +100,16 @@ function eliminarHeroe(evento)
             
 }
 
+function editarHeroe(evento)
+{
+    evento.preventDefault();
+    
+    var idHeroe = btnEditar.target.dataset.id;
+    var datos = "transaccion=editar&idHeroe=" + idHeroe;
+    
+    ejecutarAJAX(datos);    
+}
+
 function alCargarDocumento()
 {
     btnInsertar.addEventListener("click", altaHeroe);
@@ -106,6 +117,11 @@ function alCargarDocumento()
     for(var i = 0; i < btnEliminar.length; i++)
     {
         btnEliminar[i].addEventListener("click", eliminarHeroe);
+    }
+    
+    for(var i = 0; i < btnEditar.length; i++)
+    {
+        btnEditar[i].addEventListener("click", editarHeroe);
     }
 }
 window.addEventListener("load",alCargarDocumento);    

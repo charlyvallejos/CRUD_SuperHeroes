@@ -30,6 +30,13 @@
             $resultado = $this->superamigo->insertar();
             return $resultado;
         }
+        
+        public function eliminar($id_heroe){
+            $this->superamigo->set('id_heroe', $id_heroe);
+            
+            $resultado = $this->superamigo->eliminar();
+            return $resultado;
+        }
     }
 
 

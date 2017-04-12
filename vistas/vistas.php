@@ -54,6 +54,11 @@
         return printf($form);
     }
     
+    function editarHeroe($idHeroe)
+    {
+        
+    }
+    
     function mostrarHeroe()
     {
         $controladorEditoriales = new controladorEditoriales();
