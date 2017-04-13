@@ -36,6 +36,14 @@
             $resultado = $this->conn->query($sql);           
             return $resultado;
         }
+                
+        public function busqueda()
+        {
+            $sql = "SELECT * FROM Heroes WHERE id_heroe = $this->id_heroe";
+            $resultado = $this->conn->query($sql);
+            
+            return $resultado;
+        }
         
         public function insertar(){
             $sql = "INSERT INTO Heroes(nombre,imagen,descripcion,editorial) VALUES('$this->nombre','$this->imagen',"

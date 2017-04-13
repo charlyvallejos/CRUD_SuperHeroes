@@ -21,6 +21,14 @@
             return $resultado;
         }
         
+        public function busqueda($id_heroe)
+        {
+            $this->superamigo->set('id_heroe', $id_heroe);                        
+            $resultado = $this->superamigo->busqueda();
+            
+            return $resultado;
+        }
+        
         public function insertar($nombre, $imagen, $descripcion, $editorial){
             $this->superamigo->set('nombre', $nombre);
             $this->superamigo->set('imagen', $imagen);

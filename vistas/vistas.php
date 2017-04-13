@@ -41,7 +41,7 @@
                     $form .= "<textarea id='descripcion' name='txa_descripcion' required ></textarea>";
                 $form .= "</div>";
                 $form .= "<div>";
-                    $form .= "<label for=''>Editorial: </label>";
+                    $form .= "<label for='editorial'>Editorial: </label>";
                     $form .= listaEditoriales();
                 $form .= "</div>";
                 $form .= "<div>";
@@ -54,9 +54,38 @@
         return printf($form);
     }
     
-    function editarHeroe($idHeroe)
+    function editarHeroe($datos)
     {
+        $datos = mysqli_fetch_array($datos);
+        $form = "<form id='editar-heroe' class='formulario' data-editar>";
+            $form .= "<fieldset>";
+                $form .= "<legend>Alta de Super Héroe:</legend>";
+                $form .= "<div>";
+                    $form .= "<label for='nombre'>Nombre: </label>";
+                    $form .= "<input type='text' id='nombre' name='txt_nombre' value ='".$datos['nombre']."' required />";
+                $form .= "</div>"; 
+                $form .= "<div>";
+                    $form .= "<label for='imagen'>Imagen: </label>";
+                    $form .= "<input type='text' id='imagen' name='txt_imagen' value='".$datos['imagen']."'required />";
+                $form .= "</div>";
+                $form .= "<div>";
+                    $form .= "<label for='descripcion'>Descripcion: </label>";
+                    $form .= "<textarea id='descripcion' name='txa_descripcion' required >".$datos['descripcion']."</textarea>";
+                $form .= "</div>";
+                $form .= "<div>";
+                    $form .= "<label for='editorial'>Editorial: </label>";
+                    $form .= listaEditoriales();
+                $form .= "</div>";
+                $form .= "<div>";
+                    $form .= "<input type='submit' id='btn-modificar' name='btn_modificar' value='Modificar' />";
+                    $form .= "<input type='hidden' id='transaccion' name='transaccion' value='modificar' />";
+                    $form .= "<input type='hidden' id='idHeroe' name='idHeroe' value='".$datos['id_heroe']."' />";
+                $form .= "</div>";
+            $form .= "</fieldset>";
+        $form .= "</form>";
         
+        //$datos->free();
+        return printf($form);
     }
     
     function mostrarHeroe()

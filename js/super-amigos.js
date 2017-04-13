@@ -33,6 +33,8 @@ function datosRecibidos()
             
             if(ajax.responseText.indexOf('data-insertar') > -1)
                 document.querySelector('#alta-heroe').addEventListener('submit', insertarHeroe);
+            if(ajax.responseText.indexOf('data-editar') > -1)
+                document.querySelector('#editar-heroe').addEventListener('submit',modificarHeroe);
             if(ajax.responseText.indexOf('data-recargar') > -1)
                 setTimeout(window.location.reload(),7000);
             
@@ -100,13 +102,20 @@ function eliminarHeroe(evento)
             
 }
 
+function modificarHeroe(evento)
+{
+    evento.preventDefault();
+    alert('modificar');
+}
+
 function editarHeroe(evento)
 {
     evento.preventDefault();
     
-    var idHeroe = btnEditar.target.dataset.id;
+    var idHeroe = evento.target.dataset.id;
     var datos = "transaccion=editar&idHeroe=" + idHeroe;
     
+    //console.log(datos);
     ejecutarAJAX(datos);    
 }
 

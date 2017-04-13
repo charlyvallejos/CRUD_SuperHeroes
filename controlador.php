@@ -43,7 +43,10 @@
         }
         else if($transaccion == 'editar')
         {
-            editarHeroe($_POST['idHeroe']);
+            $controladorSA = new controladorSA();
+            $resultado= $controladorSA->busqueda($_POST['idHeroe']);
+            
+            editarHeroe($resultado);
         }
                             
     }
