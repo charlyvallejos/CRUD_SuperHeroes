@@ -45,6 +45,17 @@
             $resultado = $this->superamigo->eliminar();
             return $resultado;
         }
+        
+        public function editar($id_heroe, $nombre, $imagen, $descripcion, $editorial){
+            $this->superamigo->set('id_heroe', $id_heroe);
+            $this->superamigo->set('nombre', $nombre);
+            $this->superamigo->set('imagen', $imagen);
+            $this->superamigo->set('descripcion', $descripcion);
+            $this->superamigo->set('editorial', $editorial);
+            
+            $resultado = $this->superamigo->editar();
+            return $resultado;
+        }
     }
 
 
