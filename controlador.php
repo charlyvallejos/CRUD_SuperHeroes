@@ -48,6 +48,20 @@
             
             editarHeroe($resultado);
         }
+        else if($transaccion == 'modificar')
+        {
+            $controladorSA = new controladorSA();
+            $resultado = $controladorSA->editar($_POST['idHeroe'], $_POST['txt_nombre'], $_POST['txt_imagen'], $_POST['txa_descripcion'], $_POST['slc_editorial']);
+            if($resultado)
+            {
+                $respuesta = "<div class='exito' data-recargar>Se modificó con éxito el Superhéroe: <b>".$_POST['txt_nombre']."</b></div>";
+            }
+            else
+            {
+                $respuesta = "<div class='error'>Error al modificar el Superhéroe: <b>".$_POST['txt_nombre']."</b></div>";
+            }
+            return printf($respuesta);
+        }
                             
     }
     

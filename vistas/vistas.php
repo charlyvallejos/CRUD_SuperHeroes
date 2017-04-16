@@ -23,6 +23,29 @@
         return ($comboBox);
     }
     
+    function listaEditorialesActual($editorial)
+    {         
+        $controladorEditoriales = new controladorEditoriales();
+        $editoriales = $controladorEditoriales->listar();
+        
+        if($editoriales->num_rows > 0)
+        {
+            $comboBox = "<select id='editorial' name='slc_editorial' required>";
+                $comboBox .= "<option value=''>- - -</option>";
+                while($row = mysqli_fetch_array($editoriales))
+                {
+                    $selected = ($row['id_editorial'] == $editorial) ? "selected " : "";
+                    $comboBox .= sprintf("<option value='%d' $selected >%s</option>",$row['id_editorial'], $row['editorial']);
+                }
+            $comboBox .= "</select>";
+            
+            $editoriales->free();            
+        }
+        
+        $controladorEditoriales = NULL;
+        return ($comboBox);
+    }
+    
     function altaHeroe()
     {
         $form = "<form id='alta-heroe' class='formulario' data-insertar>";
@@ -74,7 +97,7 @@
                 $form .= "</div>";
                 $form .= "<div>";
                     $form .= "<label for='editorial'>Editorial: </label>";
-                    $form .= listaEditoriales();
+                    $form .= listaEditorialesActual($datos['editorial']);
                 $form .= "</div>";
                 $form .= "<div>";
                     $form .= "<input type='submit' id='btn-modificar' name='btn_modificar' value='Modificar' />";
