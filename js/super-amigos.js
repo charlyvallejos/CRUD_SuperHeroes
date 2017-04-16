@@ -36,7 +36,7 @@ function datosRecibidos()
             if(ajax.responseText.indexOf('data-editar') > -1)
                 document.querySelector('#editar-heroe').addEventListener('submit',modificarHeroe);
             if(ajax.responseText.indexOf('data-recargar') > -1)
-                setTimeout(window.location.reload(),7000);
+                setTimeout(window.location.reload(),15000);
             
         }
         else
@@ -105,7 +105,20 @@ function eliminarHeroe(evento)
 function modificarHeroe(evento)
 {
     evento.preventDefault();
-    alert('modificar');
+    
+    var nombre = new Array(),
+        valor = new Array(),
+        datos = "";
+
+    for(var i = 0; i < evento.target.length; i++)
+    {
+        nombre[i] = evento.target[i].name;
+        valor[i] = evento.target[i].value;
+        
+        datos += nombre[i] + '=' + valor[i] + '&';
+    }
+    //console.log(datos);
+    ejecutarAJAX(datos);
 }
 
 function editarHeroe(evento)
