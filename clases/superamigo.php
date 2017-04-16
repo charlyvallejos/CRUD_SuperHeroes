@@ -66,6 +66,23 @@
             }
         }
         
+        public function editar(){
+            $sql = "UPDATE Heroes SET nombre = '$this->nombre', imagen = '$this->imagen', descripcion = '$this->descripcion',"
+                . " editorial = $this->editorial WHERE id_heroe = $this->id_heroe";
+            if($this->conn->query($sql))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+                
+                
+                
+                   
+        }
+        
     }
 
 ?>
