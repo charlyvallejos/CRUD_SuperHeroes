@@ -62,6 +62,10 @@
             }
             return printf($respuesta);
         }
+        else if ($transaccion == 'mostrar')
+        {
+            mostrarHeroe();
+        }
                             
     }
     

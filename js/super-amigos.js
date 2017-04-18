@@ -6,6 +6,7 @@ var STATUS_OK = 200;
 var btnInsertar = document.querySelector("#insertar"),
     precarga = document.querySelector("#precarga"),
     respuesta = document.querySelector("#respuesta"),
+    mostrar = document.querySelector("#mostrar"),
     btnEliminar = document.querySelectorAll(".eliminar"),
     btnEditar = document.querySelectorAll(".editar"),
     ajax = null;
@@ -26,18 +27,24 @@ function datosRecibidos()
     if (ajax.readyState == READY_STATE_COMPLETE)
     {
         if(ajax.status == STATUS_OK)
-        {            
-            precarga.style.display = 'none';
-            respuesta.style.display = 'block';
-            respuesta.innerHTML = ajax.responseText;
-            
-            if(ajax.responseText.indexOf('data-insertar') > -1)
-                document.querySelector('#alta-heroe').addEventListener('submit', insertarHeroe);
-            if(ajax.responseText.indexOf('data-editar') > -1)
-                document.querySelector('#editar-heroe').addEventListener('submit',modificarHeroe);
-            if(ajax.responseText.indexOf('data-recargar') > -1)
-                setTimeout(window.location.reload(),15000);
-            
+        {
+            if(ajax.responseText.indexOf('data-mostrar') > -1)
+            {
+                mostrar.innerHTML = ajax.responseText;
+            }
+            else
+            {
+                precarga.style.display = 'none';
+                respuesta.style.display = 'block';
+                respuesta.innerHTML = ajax.responseText;
+
+                if(ajax.responseText.indexOf('data-insertar') > -1)
+                    document.querySelector('#alta-heroe').addEventListener('submit', insertarHeroe);
+                if(ajax.responseText.indexOf('data-editar') > -1)
+                    document.querySelector('#editar-heroe').addEventListener('submit',modificarHeroe);
+                if(ajax.responseText.indexOf('data-recargar') > -1)
+                    setTimeout(window.location.reload(),15000);
+            }                    
         }
         else
         {
@@ -81,6 +88,7 @@ function altaHeroe(evento)
 {
     evento.preventDefault();   
     var datos = "transaccion=alta";
+    
     
     ejecutarAJAX(datos);
     
@@ -132,8 +140,16 @@ function editarHeroe(evento)
     ejecutarAJAX(datos);    
 }
 
+function mostrarHeroes()
+{
+    var datos = "transaccion=mostrar";
+    
+    ejecutarAJAX(datos);
+}
+
 function alCargarDocumento()
 {
+    mostrarHeroes();
     btnInsertar.addEventListener("click", altaHeroe);
     
     for(var i = 0; i < btnEliminar.length; i++)
@@ -145,6 +161,8 @@ function alCargarDocumento()
     {
         btnEditar[i].addEventListener("click", editarHeroe);
     }
+    
+    
 }
 window.addEventListener("load",alCargarDocumento);    
 

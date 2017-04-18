@@ -3,6 +3,7 @@
 //    require_once('./modulos/controladorSA.php');
 //    require_once('./modulos/controladorEditoriales.php');    
     require_once('vistas/vistas.php');
+    //require_once('controlador.php');
     ini_set('display_errors', 0);
 ?>
 <html>
@@ -20,11 +21,12 @@
         <section id="contenido">
             <div id="respuesta"></div>
             <div id="precarga"></div>
+            <div id="mostrar"></div>
             <?php
 //                $enrutador = new enrutador();
 //                if($enrutador->validarGET($_GET['cargar']))
 //                    $enrutador->cargarVista($_GET['cargar']);
-                mostrarHeroe();
+                //mostrarHeroe();
             ?>
         </section>
         <script src="./js/super-amigos.js"></script>

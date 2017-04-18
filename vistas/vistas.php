@@ -1,6 +1,9 @@
 <?php
+    ini_set('display_errors', 0);
     require_once('modulos/controladorEditoriales.php');
     require_once('modulos/controladorSA.php');
+    
+    //$controladorEditoriales = new controladorEditoriales();
     function listaEditoriales()
     {         
         $controladorEditoriales = new controladorEditoriales();
@@ -178,7 +181,7 @@
             $paginacion .= "</div>";
             //FIN DE PAGINACION
             //TABLA
-            $tabla = "<table id='tabla-heroes' class='tabla'>";
+            $tabla = "<table id='tabla-heroes' class='tabla' data-mostrar>";
                 $tabla .= "<thead>";
                     $tabla .= "<tr>";
                         $tabla .= "<th>Id Heroe</th>";
