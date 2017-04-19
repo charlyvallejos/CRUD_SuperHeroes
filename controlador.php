@@ -3,6 +3,10 @@
     //require('modulos/controladorSA.php');
     $transaccion = $_POST['transaccion'];
     
+    function mostrarHeroes(){
+        mostrarHeroe();
+    }
+    
     function ejecutarTransaccion($transaccion)
     {
         if ($transaccion == 'alta')
@@ -62,10 +66,10 @@
             }
             return printf($respuesta);
         }
-        else if ($transaccion == 'mostrar')
-        {
-            mostrarHeroe();
-        }
+//        else if ($transaccion == 'mostrar')
+//        {
+//            mostrarHeroe();
+//        }
                             
     }
     

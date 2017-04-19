@@ -28,23 +28,17 @@ function datosRecibidos()
     {
         if(ajax.status == STATUS_OK)
         {
-            if(ajax.responseText.indexOf('data-mostrar') > -1)
-            {
-                mostrar.innerHTML = ajax.responseText;
-            }
-            else
-            {
-                precarga.style.display = 'none';
-                respuesta.style.display = 'block';
-                respuesta.innerHTML = ajax.responseText;
+            precarga.style.display = 'none';                          
+            respuesta.style.display = 'block';
+            respuesta.innerHTML = ajax.responseText;
 
-                if(ajax.responseText.indexOf('data-insertar') > -1)
-                    document.querySelector('#alta-heroe').addEventListener('submit', insertarHeroe);
-                if(ajax.responseText.indexOf('data-editar') > -1)
-                    document.querySelector('#editar-heroe').addEventListener('submit',modificarHeroe);
-                if(ajax.responseText.indexOf('data-recargar') > -1)
-                    setTimeout(window.location.reload(),15000);
-            }                    
+            if(ajax.responseText.indexOf('data-insertar') > -1)
+                document.querySelector('#alta-heroe').addEventListener('submit', insertarHeroe);
+            if(ajax.responseText.indexOf('data-editar') > -1)
+                document.querySelector('#editar-heroe').addEventListener('submit',modificarHeroe);
+            if(ajax.responseText.indexOf('data-recargar') > -1)
+                setTimeout(window.location.reload(),15000);
+//                               
         }
         else
         {
@@ -140,16 +134,10 @@ function editarHeroe(evento)
     ejecutarAJAX(datos);    
 }
 
-function mostrarHeroes()
-{
-    var datos = "transaccion=mostrar";
-    
-    ejecutarAJAX(datos);
-}
 
 function alCargarDocumento()
 {
-    mostrarHeroes();
+    
     btnInsertar.addEventListener("click", altaHeroe);
     
     for(var i = 0; i < btnEliminar.length; i++)
@@ -161,8 +149,7 @@ function alCargarDocumento()
     {
         btnEditar[i].addEventListener("click", editarHeroe);
     }
-    
-    
+        
 }
 window.addEventListener("load",alCargarDocumento);    
 
